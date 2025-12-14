@@ -20,7 +20,7 @@ Take a look at the [example programs](https://github.com/BlockstreamResearch/Sim
 
 ## MSRV
 
-This crate should compile with any feature combination on **Rust 1.78.0** or higher.
+This crate should compile with any feature combination on **Rust 1.79.0** or higher.
 
 ## Simplicity's need for a high-level language
 
@@ -63,7 +63,13 @@ The SimplicityHL compiler takes two arguments:
 The compiler produces a base64-encoded Simplicity program. Witness data will be included if a witness file is provided.
 
 ```bash
-./target/debug/simc examples/test.simf examples/test.wit
+./target/debug/simc examples/p2pkh.simf examples/p2pkh.wit
+```
+
+Produce JSON output with the `--json` flag.
+
+```bash
+./target/debug/simc examples/p2pkh.simf examples/p2pkh.wit --json
 ```
 
 ### VSCode extension

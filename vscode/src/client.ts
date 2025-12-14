@@ -53,10 +53,26 @@ export class LspClient {
     }
   }
 
-  public stop(): Thenable<void> | undefined {
+  public async stop(): Promise<void> {
     if (!this.client) {
-      return undefined;
+      return;
     }
-    return this.client.stop();
+    await this.client.stop();
+    this.client = undefined;
+  }
+
+  public async restart(): Promise<void> {
+    if (!this.client) {
+      window.showWarningMessage("LSP client not initialized. Cannot restart.");
+      return;
+    }
+
+    try {
+      await this.stop();
+      await this.start();
+      window.showInformationMessage("SimplicityHL Language Server restarted successfully!");
+    } catch (e) {
+      window.showErrorMessage(`Failed to restart LSP: ${e}`);
+    }
   }
 }
